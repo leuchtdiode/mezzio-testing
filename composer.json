@@ -1,0 +1,32 @@
+{
+	"name": "leuchtdiode/mezzio-testing",
+	"description": "Mezzio module for testing",
+	"type": "library",
+	"license": "MIT",
+	"homepage": "https://try2catch.com",
+	"authors": [
+		{
+			"name": "Alex Schloegl",
+			"email": "alex@try2catch.com",
+			"homepage": "https://try2catch.com",
+			"role": "Developer"
+		}
+	],
+	"keywords": [
+		"Mezzio",
+		"Module",
+		"Testing"
+	],
+	"require": {
+		"php": "~8.3.0 || ~8.4.0",
+		"phpunit/phpunit": "^12.2.7",
+		"psr/container": "~1.0 || ~2.0 || ~3.0",
+		"doctrine/data-fixtures": "^2.0.0",
+		"trinet/mezzio-test": "^1.2.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Testing\\": "src/"
+		}
+	}
+}
