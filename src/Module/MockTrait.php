@@ -3,7 +3,6 @@ namespace Testing\Module;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
-use PHPUnit\Framework\MockObject\Stub;
 
 trait MockTrait
 {
@@ -62,18 +61,10 @@ trait MockTrait
 			$invocation = $this->any();
 		}
 
-		if ($result instanceof Stub)
-		{
-			$stub = $result;
-		}
-		else
-		{
-			$stub = $this->returnValue($result);
-		}
-
-		$call = $mock->expects($invocation)
+		$call = $mock
+			->expects($invocation)
 			->method($method)
-			->will($stub);
+			->willReturn($result);
 
 		if (!empty($with))
 		{
