@@ -52,7 +52,10 @@ trait DynamicFixturesTrait
 			$schema->createSchema($metaData);
 		}
 
-		copy($this->db, $this->emptyDb); // only for SQLite
+		if (file_exists($this->db))
+		{
+			copy($this->db, $this->emptyDb); // only for SQLite
+		}
 
 		file_put_contents($this->dbHash, self::$schemaHash);
 	}
