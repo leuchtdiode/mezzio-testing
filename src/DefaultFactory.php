@@ -26,7 +26,7 @@ class DefaultFactory
 	public function __invoke(
 		Containerinterface $container,
 		$requestedName,
-		array $options = null
+		?array $options = null
 	)
 	{
 		$this->container     = $container;
