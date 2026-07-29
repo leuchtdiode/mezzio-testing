@@ -3,6 +3,7 @@ namespace Testing\Module;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
+use PHPUnit\Framework\MockObject\Stub;
 
 trait MockTrait
 {
@@ -72,5 +73,21 @@ trait MockTrait
 		}
 
 		return $mock;
+	}
+
+	protected function stubServiceMethod(string $class, string $method, mixed $result): Stub
+	{
+		$stub = $this->createStub($class);
+
+		$stub
+			->method($method)
+			->willReturn($result);
+
+		$serviceLocator = $this->getApplicationServiceLocator();
+
+		$serviceLocator->setAllowOverride(true);
+		$serviceLocator->setService($class, $stub);
+
+		return $stub;
 	}
 }
