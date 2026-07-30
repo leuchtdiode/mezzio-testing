@@ -24,6 +24,11 @@ class BaseTestCase extends TestCase
 		return true;
 	}
 
+	protected function isFreshDatabaseOnEveryRun(): bool
+	{
+		return false;
+	}
+
 	/**
 	 * @throws Throwable
 	 */
@@ -37,6 +42,11 @@ class BaseTestCase extends TestCase
 
 		if ($this->isDatabaseNecessary())
 		{
+			if ($this->isFreshDatabaseOnEveryRun())
+			{
+				$this->deleteDb();
+			}
+
 			$this->createEmptyDb();
 		}
 	}

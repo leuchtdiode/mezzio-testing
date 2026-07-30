@@ -3,7 +3,6 @@ namespace Testing\Module;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
-use Laminas\Mvc\Application;
 use Testing\Dto\CreationResult;
 use Throwable;
 
@@ -14,6 +13,17 @@ trait DynamicFixturesTrait
 	private string $dbHash  = __DIR__ . '/../../../../../data/testing/db.hash';
 
 	private static ?string $schemaHash = null;
+
+	private function deleteDb(): void
+	{
+		foreach ([ $this->db, $this->emptyDb, $this->dbHash ] as $file)
+		{
+			if (file_exists($file))
+			{
+				unlink($file);
+			}
+		}
+	}
 
 	/**
 	 * @throws Throwable
